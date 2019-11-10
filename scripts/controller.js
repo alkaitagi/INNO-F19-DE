@@ -2,38 +2,32 @@ function recalculate(x0, y0, X, N) {
     let h = (X - x0) / N;
     let xs = getXs(x0, h, N);
 
-    let ys1 = getYs(xs, y0, h, euler, v11);
-    let ys2 = getYs(xs, y0, h, eulerP, v11);
-    let ys3 = getYs(xs, y0, h, runge, v11);
-
-    let p = composePoints(xs, ys1);
-    console.log(p);
-
-    let graph = new Chart(canvas, {
-        type: 'scatter',
+    if (window.chart && window.chart !== null) {
+        window.chart.destroy();
+    }
+    window.chart = new Chart(canvas, {
+        type: 'line',
         data: {
+            labels: xs,
             datasets: [{
                 fill: false,
-                showLine: true,
                 label: "Runge-Kutta",
                 backgroundColor: "#BF616A",
                 borderColor: "#BF616A",
                 borderDash: [5, 5],
-                data: composePoints(xs, ys3)
+                data: getYs(xs, y0, h, runge, v11)
             }, {
                 fill: false,
-                showLine: true,
                 label: "Improved Euler",
                 backgroundColor: "#A3BE8C",
                 borderColor: "#A3BE8C",
-                data: composePoints(xs, ys2)
+                data: getYs(xs, y0, h, eulerP, v11)
             }, {
                 fill: true,
-                showLine: true,
                 label: "Euler",
                 backgroundColor: "#D8DEE9",
                 borderColor: "#0000",
-                data: composePoints(xs, ys1)
+                data: getYs(xs, y0, h, euler, v11)
             }]
         },
         options: {
@@ -46,12 +40,6 @@ function recalculate(x0, y0, X, N) {
             hover: {
                 mode: 'nearest',
                 intersect: true
-            },
-            scales: {
-                xAxes: [{
-                    type: 'linear',
-                    position: 'bottom'
-                }]
             }
         }
     });
@@ -89,14 +77,6 @@ function getYs(x, y0, h, m, f) {
     }
 
     return round(y);
-}
-
-function composePoints(xs, ys) {
-    let p = [];
-    for (i = 0; i < xs.length; i++) {
-        p.push({ x: xs[i], y: ys[i] });
-    }
-    return p;
 }
 
 function round(x) {

@@ -6,7 +6,7 @@ let NInput = document.getElementById("N");
 Chart.defaults.global.animation.duration = 200;
 
 document.addEventListener("DOMContentLoaded", () => {
-    canvas = document.querySelector("#graph canvas");
+    canvas = document.querySelector("#graph canvas").getContext("2d");
 
     x0Input = document.getElementById("x0");
     x0Input.addEventListener("input", collectData);
