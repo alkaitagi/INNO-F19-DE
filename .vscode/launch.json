@@ -6,7 +6,7 @@
             "type": "edge",
             "request": "launch",
             "version": "beta",
-            "url": "http://localhost/mypage.html",
+            "url": "http://localhost:5500/index.html",
             "webRoot": "${workspaceFolder}/wwwroot"
         },
         {
@@ -14,7 +14,7 @@
             "type": "edge",
             "request": "launch",
             "version": "beta",
-            "file": "${workspaceFolder}/index.html"
+            "file": "http://127.0.0.1:5500/index.html"
         },
     ]
 }
