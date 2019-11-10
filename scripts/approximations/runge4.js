@@ -1,5 +1,5 @@
 export default {
-    name: "Runge-Kutta 4th order",
+    name: "Runge-Kutta 4th",
     /**
      * Evaluate approximation.
      * @param {number} x - x-value.
