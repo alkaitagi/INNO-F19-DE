@@ -1,8 +1,10 @@
-const round = (x) => +x.toFixed(3);
+function round(x) {
+    return + x.toFixed(3);
+}
 
 let graph;
 let x0 = 0;
-let y0 = Math.SQRT1_2;
+let y0 = round(Math.SQRT1_2);
 let X = 3;
 let N = 10;
 
@@ -54,14 +56,14 @@ function recalculate() {
             datasets: [{
                 fill: false,
                 label: "Runge-Kutta",
-                backgroundColor: "#0000",
+                backgroundColor: "#BF616A",
                 borderColor: "#BF616A",
                 borderDash: [5, 5],
                 data: ys3
             }, {
                 fill: false,
                 label: "Improved Euler",
-                backgroundColor: "#0000",
+                backgroundColor: "#A3BE8C",
                 borderColor: "#A3BE8C",
                 data: ys2
             }, {
@@ -73,7 +75,15 @@ function recalculate() {
             }]
         },
         options: {
-
+            responsive: true,
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            }
         }
     });
 }
@@ -91,7 +101,7 @@ function getXs(x0, h, N) {
         x.push(x0 += h);
     }
 
-    return x;
+    return x.map(x => round(x));
 }
 
 /**
@@ -103,11 +113,11 @@ function getXs(x0, h, N) {
  * @param {number} y two-variable function.
  */
 function getYs(x, y0, h, m, f) {
-    let y = [y0];
+    let y = [round(y0)];
 
     for (i = 0; i < x.length; i++) {
-        y.push(m(x[i], y[i], h, f));
+        y.push(round(m(x[i], y[i], h, f)));
     }
 
-    return y;
+    return y.map(y => round(y));
 }
