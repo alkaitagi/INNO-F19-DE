@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    user-select: none;
+    text-align: center;
+    font-family: sans-serif;
+    color: #4C566A;
+    border-radius: 10px;
+    transition: 0.15s;
+    border: 0;
+}
+
+h1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input {
+    padding: 3px;
+    box-shadow: inset 0 0 5px #D8DEE9;
+    font-size: 16px;
+    text-align: left;
+}
+
+input:read-only {
+    background-color: #ECEFF4;
+}
+
+input:focus {
+    box-shadow: inset 0 0 5px #D8DEE9;
+}
+
+/* .section {
+    margin: auto;
+    width: 100%;
+    max-width: 1000px;
+} */
