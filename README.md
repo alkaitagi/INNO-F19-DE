@@ -47,3 +47,7 @@ $C = 0$
 ### Particular solution
 
 $y=\plusmn\sqrt{\frac{e^{x^2}}{1+e^{x^2}}}$
+
+### Discontuinuity points
+
+There are no discontinuity points. However $y_0$ my not be equal $0$ or $\plusmn1$.

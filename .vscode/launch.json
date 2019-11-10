@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch localhost in Edge",
+            "type": "edge",
+            "request": "launch",
+            "version": "beta",
+            "url": "http://localhost/mypage.html",
+            "webRoot": "${workspaceFolder}/wwwroot"
+        },
+        {
+            "name": "Launch index.html in Edge",
+            "type": "edge",
+            "request": "launch",
+            "version": "beta",
+            "file": "${workspaceFolder}/index.html"
+        },
+    ]
+}

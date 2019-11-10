@@ -1,0 +1,46 @@
+<canvas id="graphCanvas" style="width: 300px; height: 300px;"></canvas>
+
+<script src="equation.js"></script>
+<script src="methods.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+    let canvas = document.getElementById('graphCanvas');
+    let points = euler(0, Math.SQRT1_2, 3, 10, evaluate);
+    let points1 = eulerP(0, Math.SQRT1_2, 3, 10, evaluate);
+    let points2 = runge(0, Math.SQRT1_2, 3, 10, evaluate);
+
+    let graph = new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: points.map(p => +p.x.toFixed(3)),
+            datasets: [{
+                data: points.map(p => +p.y.toFixed(3))
+            }, {
+                data: points1.map(p => +p.y.toFixed(3))
+            },
+            {
+                data: points2.map(p => +p.y.toFixed(3))
+            }]
+        }
+    });
+
+    // let graph = new Chart(canvas, {
+    //     type: 'scatter',
+    //     data: {
+    //         datasets: [{
+    //             label: 'Scatter Dataset',
+    //             data: points
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             xAxes: [{
+    //                 type: 'linear',
+    //                 position: 'bottom'
+    //             }]
+    //         }
+    //     }
+    // });
+
+</script>
