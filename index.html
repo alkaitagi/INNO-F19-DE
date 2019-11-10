@@ -6,6 +6,7 @@
     <title>DE Practicum</title>
 
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="graph.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
@@ -15,20 +16,21 @@
 </head>
 
 <body>
-
-    <form>
-        Range begins:
-        <input id="x0" type=number step=0.001 /> <br />
-        Initial value:
-        <input id="y0" type=number step=0.001 /> <br />
-        Range ends:
-        <input id="X" type=number /> <br />
-        Number of steps:
-        <input id="N" type=number min=1 step=1 /> <br />
-    </form>
-
-    <canvas style="width: 300px; height: 300px;"></canvas>
-
+    <div id="graph">
+        <div id=input>
+            <p>Range begins</p>
+            <input id="x0" type=number step=0.001 />
+            <p>Initial value</p>
+            <input id="y0" type=number step=0.001 />
+            <p>Range ends</p>
+            <input id="X" type=number />
+            <p>Number of steps</p>
+            <input id="N" type=number min=1 step=1 />
+            <p>Step length</p>
+            <input id="h" type=number readonly />
+        </div>
+        <div><canvas></canvas></div>
+    </div>
 </body>
 
 </html>

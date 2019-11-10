@@ -1,5 +1,6 @@
 function round(x) {
-    return + x.toFixed(3);
+    let dec = 100000;
+    return Math.round(x * dec) / dec;
 }
 
 let graph;
@@ -7,15 +8,19 @@ let x0 = 0;
 let y0 = round(Math.SQRT1_2);
 let X = 3;
 let N = 10;
+let h = 0.3;
 
 document.addEventListener("DOMContentLoaded", () => {
-    canvas = document.querySelector("canvas");
+    Chart.defaults.global.animation.duration = 200;
+    canvas = document.querySelector("#graph canvas");
+    _h = document.getElementById("h")
 
     _x0 = document.getElementById("x0");
     _x0.value = x0;
     _x0.addEventListener("input", () => {
         x0 = _x0.value;
         recalculate();
+        _h.value = h;
     });
 
     _y0 = document.getElementById("y0");
@@ -23,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     _y0.addEventListener("input", () => {
         y0 = _y0.value;
         recalculate();
+        _h.value = h;
     });
 
     _X = document.getElementById("X");
@@ -30,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     _X.addEventListener("input", () => {
         X = _X.value;
         recalculate();
+        _h.value = h;
     });
 
     _N = document.getElementById("N");
@@ -37,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     _N.addEventListener("input", () => {
         N = _N.value;
         recalculate();
+        _h.value = h;
     });
 
     recalculate();
@@ -75,7 +83,7 @@ function recalculate() {
             }]
         },
         options: {
-            responsive: true,
+            //responsive: true,
             tooltips: {
                 mode: 'index',
                 intersect: false,

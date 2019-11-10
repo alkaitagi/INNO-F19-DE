@@ -1,0 +1,23 @@
+#graph{
+    margin: auto;
+    width: 90%;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+#graph #input {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    align-content: center;
+}
+
+#graph #input p{
+    text-align: right;
+    vertical-align: middle;
+}
+
+#graph #input .label{
+    text-align: right;
+}
