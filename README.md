@@ -18,9 +18,9 @@ using partial fraction decomposition:
 
 $\int\frac{dy}{y}-\frac{1}{2}\int\frac{dy}{1+y}+\frac{1}{2}\int\frac{dy}{1-y}=\int xdx$
 
-$\ln|\frac{y}{\sqrt{(1+y)(1-y)}}|=\frac{x^2}{2}+\tilde{C}$
+$\ln|\frac{y}{\sqrt{(1+y)(1-y)}}|=\frac{x^2}{2}+\hat{C}$
 
-$\frac{y}{\sqrt{(1+y)(1-y)}}=e^{\frac{x^2}{2}+\tilde{C}}$
+$\frac{y}{\sqrt{(1+y)(1-y)}}=e^{\frac{x^2}{2}+\hat{C}}$
 
 squaring both side:
 

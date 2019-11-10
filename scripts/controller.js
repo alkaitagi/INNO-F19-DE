@@ -1,89 +1,44 @@
-function round(x) {
-    let dec = 100000;
-    return Math.round(x * dec) / dec;
-}
-
-let graph;
-let x0 = 0;
-let y0 = round(Math.SQRT1_2);
-let X = 3;
-let N = 10;
-let h = 0.3;
-
-document.addEventListener("DOMContentLoaded", () => {
-    Chart.defaults.global.animation.duration = 200;
-    canvas = document.querySelector("#graph canvas");
-    _h = document.getElementById("h")
-
-    _x0 = document.getElementById("x0");
-    _x0.value = x0;
-    _x0.addEventListener("input", () => {
-        x0 = _x0.value;
-        recalculate();
-        _h.value = h;
-    });
-
-    _y0 = document.getElementById("y0");
-    _y0.value = y0;
-    _y0.addEventListener("input", () => {
-        y0 = _y0.value;
-        recalculate();
-        _h.value = h;
-    });
-
-    _X = document.getElementById("X");
-    _X.value = X;
-    _X.addEventListener("input", () => {
-        X = _X.value;
-        recalculate();
-        _h.value = h;
-    });
-
-    _N = document.getElementById("N");
-    _N.value = N;
-    _N.addEventListener("input", () => {
-        N = _N.value;
-        recalculate();
-        _h.value = h;
-    });
-
-    recalculate();
-});
-
-function recalculate() {
+function recalculate(x0, y0, X, N) {
     let h = (X - x0) / N;
     let xs = getXs(x0, h, N);
 
     let ys1 = getYs(xs, y0, h, euler, v11);
     let ys2 = getYs(xs, y0, h, eulerP, v11);
     let ys3 = getYs(xs, y0, h, runge, v11);
+
+    let p = composePoints(xs, ys1);
+    console.log(p);
+
     let graph = new Chart(canvas, {
-        type: 'line',
+        type: 'scatter',
         data: {
-            labels: xs,
             datasets: [{
                 fill: false,
+                showLine: true,
                 label: "Runge-Kutta",
                 backgroundColor: "#BF616A",
                 borderColor: "#BF616A",
                 borderDash: [5, 5],
-                data: ys3
+                data: composePoints(xs, ys3)
             }, {
                 fill: false,
+                showLine: true,
                 label: "Improved Euler",
                 backgroundColor: "#A3BE8C",
                 borderColor: "#A3BE8C",
-                data: ys2
+                data: composePoints(xs, ys2)
             }, {
                 fill: true,
+                showLine: true,
                 label: "Euler",
                 backgroundColor: "#D8DEE9",
                 borderColor: "#0000",
-                data: ys1
+                data: composePoints(xs, ys1)
             }]
         },
         options: {
-            //responsive: true,
+            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
                 mode: 'index',
                 intersect: false,
@@ -91,6 +46,12 @@ function recalculate() {
             hover: {
                 mode: 'nearest',
                 intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    type: 'linear',
+                    position: 'bottom'
+                }]
             }
         }
     });
@@ -103,13 +64,13 @@ function recalculate() {
  * @param {number} N number of steps.
  */
 function getXs(x0, h, N) {
-    let x = [x0];
+    let x = [];
 
-    for (i = 0; i < N; i++) {
-        x.push(x0 += h);
+    for (i = 0; i <= N; i++) {
+        x.push(x0 + i * h);
     }
 
-    return x.map(x => round(x));
+    return round(x);
 }
 
 /**
@@ -121,11 +82,25 @@ function getXs(x0, h, N) {
  * @param {number} y two-variable function.
  */
 function getYs(x, y0, h, m, f) {
-    let y = [round(y0)];
+    let y = [y0];
 
     for (i = 0; i < x.length; i++) {
-        y.push(round(m(x[i], y[i], h, f)));
+        y.push(m(x[i], y[i], h, f));
     }
 
-    return y.map(y => round(y));
+    return round(y);
+}
+
+function composePoints(xs, ys) {
+    let p = [];
+    for (i = 0; i < xs.length; i++) {
+        p.push({ x: xs[i], y: ys[i] });
+    }
+    return p;
+}
+
+function round(x) {
+    for (i = 0; i < x.length; i++)
+        x[i] = +(Math.round(x[i] + "e+3") + "e-3");
+    return x;
 }
