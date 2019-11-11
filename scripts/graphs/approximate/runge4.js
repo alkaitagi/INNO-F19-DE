@@ -1,5 +1,5 @@
 import base from "../baseApproximate.js";
-import approximation from "../../approximations/runge4.js"
+import approximation from "../../math/approximations/runge4.js"
 
 class runge4 extends base {
     constructor() {

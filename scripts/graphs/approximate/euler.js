@@ -1,5 +1,5 @@
 import base from "../baseApproximate.js";
-import approximation from "../../approximations/euler.js"
+import approximation from "../../math/approximations/euler.js"
 
 class euler extends base {
     constructor() {

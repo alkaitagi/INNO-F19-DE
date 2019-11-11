@@ -23,7 +23,7 @@ export default class baseApproximate extends base {
 
         for (let i = 0; i < inputs.length; i++) {
             values.push(this.approximation.method(inputs[i], values[i], h, derivative));
-            errors.push(values[i + 1] - exacts[i + 1]);
+            errors.push(Math.abs(values[i + 1] - exacts[i + 1]));
         }
 
         this.values = this.round(values);
