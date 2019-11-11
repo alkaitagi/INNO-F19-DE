@@ -16,7 +16,7 @@ export function recalculate(x0, y0, X, N) {
     window.chart = new Chart(window.canvas, {
         type: 'line',
         data: {
-            labels: xs,
+            labels: xs.map(x => x.toFixed(2)),
             datasets: [
                 runge4.update(xs, y0, h, v11.deriv),
                 eulerP.update(xs, y0, h, v11.deriv),
@@ -34,18 +34,6 @@ export function recalculate(x0, y0, X, N) {
             hover: {
                 mode: 'nearest',
                 intersect: true
-            },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        presicion: 3
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        presicion: 3
-                    }
-                }],
             },
         }
     });

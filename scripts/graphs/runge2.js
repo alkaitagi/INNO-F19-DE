@@ -1,10 +1,10 @@
 import base from "./base.js";
-import method from "../approximations/runge2.js"
+import approximation from "../approximations/runge2.js"
 
 class runge2 extends base {
     constructor() {
         super();
-        this.method = method;
+        this.method = approximation.method;
         this.dataset = {
             fill: false,
             label: "Runge-Kutta 2nd",
