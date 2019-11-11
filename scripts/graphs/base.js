@@ -1,7 +1,7 @@
 export default class base {
     constructor() {
         if (new.target === base) {
-            throw new TypeError("Cannot construct Abstract instances");
+            throw new TypeError("Cannot construct abstract instances");
         }
     };
     /**

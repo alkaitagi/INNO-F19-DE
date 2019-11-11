@@ -13,6 +13,7 @@ class exact extends base {
     * Calculate dataset for array of x.
     * @param {number} x - x-values array.
     * @param {number} y0 - initial y-value.
+    * @param {object} equation - equation instance.
     */
     update(x, y0, equation) {
         let y = [y0];
