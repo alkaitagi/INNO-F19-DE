@@ -19,7 +19,7 @@ export default class baseExact extends base {
     * @param {number} inputs - x-values array.
     * @param {number} y0 - initial y-value.
     */
-    update(inputs, y0) {
+    updateValues(inputs, y0) {
         let values = [];
         let constant = this.equation.constant(inputs[0], y0);
 

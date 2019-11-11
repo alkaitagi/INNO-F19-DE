@@ -5,6 +5,7 @@ import runge4 from "./graphs/approximate/runge4.js"
 
 import { CInput } from "./dataBind.js"
 
+let inputs = [];
 let approximations = [runge4, eulerP, euler];
 let options = {
     responsive: true,
@@ -35,29 +36,32 @@ let options = {
  * @param {number} N number of steps.
  */
 function calculateInputs(x0, h, N) {
-    let inputs = [];
+    inputs = [];
 
     for (let i = 0; i <= N; i++) {
         inputs.push(x0 + i * h);
     }
-
-    return inputs;
 }
 
 export function recalculate(x0, y0, X, N0, N) {
     let h = (X - x0) / N;
-    let inputs = calculateInputs(x0, h, N);
+    calculateInputs(x0, h, N);
 
-    exact.update(inputs, y0);
-    approximations.forEach(a => a.update(inputs, y0, h, exact.values, exact.equation.derivative));
+    exact.updateValues(inputs, y0);
+    approximations.forEach(function (a) {
+        a.updateValues(inputs, y0, h, exact.equation.derivative);
+        a.updateErrors(exact.values, N0, N);
+    });
 
     CInput.value = exact.constant;
     inputs = exact.round(inputs);
+
     drawFunctions(inputs);
     drawLocalErrors(inputs);
+    drawGlobalErrors(inputs, N0, N);
 }
 
-function drawFunctions(xs) {
+function drawFunctions() {
     if (window.charts.function !== null) {
         window.charts.function.destroy();
     }
@@ -65,7 +69,7 @@ function drawFunctions(xs) {
     window.charts.function = new Chart(window.canvases.function, {
         type: 'line',
         data: {
-            labels: xs,
+            labels: inputs,
             datasets: [
                 ...approximations.map(a => a.createDataset(a.values)),
                 exact.createDataset(exact.values),
@@ -95,7 +99,7 @@ function drawFunctions(xs) {
     });
 }
 
-function drawLocalErrors(xs) {
+function drawLocalErrors() {
     if (window.charts.localError !== null) {
         window.charts.localError.destroy();
     }
@@ -103,16 +107,16 @@ function drawLocalErrors(xs) {
     window.charts.localError = new Chart(window.canvases.localError, {
         type: 'line',
         data: {
-            labels: xs,
+            labels: inputs,
             datasets: [
-                ...approximations.map(a => a.createDataset(a.errors)),
+                ...approximations.map(a => a.createDataset(a.localErrors)),
             ],
         },
         options: options,
     });
 }
 
-function drawGlobalErrors(xs) {
+function drawGlobalErrors() {
     if (window.charts.globalError !== null) {
         window.charts.globalError.destroy();
     }
@@ -120,9 +124,9 @@ function drawGlobalErrors(xs) {
     window.charts.globalError = new Chart(window.canvases.globalError, {
         type: 'line',
         data: {
-            labels: xs,
+            labels: inputs,
             datasets: [
-                ...approximations.map(a => a.createDataset(a.errors)),
+                ...approximations.map(a => a.createDataset(a.globalErrors)),
             ],
         },
         options: options,
