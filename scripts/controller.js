@@ -44,13 +44,13 @@ function calculateInputs(x0, h, N) {
 }
 
 export function recalculate(x0, y0, X, N0, N) {
-    let h = (X - x0) / N;
-    calculateInputs(x0, h, N);
+    calculateInputs(x0, (X - x0) / N, N);
 
     exact.updateValues(inputs, y0);
     approximations.forEach(function (a) {
-        a.updateValues(inputs, y0, h, exact.equation.derivative);
-        a.updateErrors(exact.values, N0, N);
+        a.updateValues(inputs, y0, exact.equation.derivative);
+        a.updateLocalErrors(exact.values);
+        a.updateGlobalErrors(exact.values, N0, N);
     });
 
     CInput.value = exact.constant;
