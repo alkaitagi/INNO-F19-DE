@@ -9,9 +9,9 @@ export default class base {
     * @param {number} x - x-value.
     * @param {number} y - y-value.
     * @param {number} h - x-step.
-    * @param {number} f - f(x,y) function to approximate.
+    * @param {number} derivative - y'(x,y) function to approximate.
     */
-    method(x, y, h, f) {
+    method(x, y, h, derivative) {
         throw new TypeError("Method not implemented");
     };
 }

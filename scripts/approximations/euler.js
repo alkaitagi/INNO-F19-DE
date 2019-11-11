@@ -4,8 +4,8 @@ class euler extends base {
     constructor() {
         super();
     };
-    method(x, y, h, f) {
-        return y + h * f(x, y);
+    method(x, y, h, derivative) {
+        return y + h * derivative(x, y);
     };
 };
 

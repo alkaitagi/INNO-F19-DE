@@ -9,23 +9,24 @@ export default class base {
      * @param {number} x - x-value.
      * @param {number} y - y-value.
      */
-    deri(x, y) {
+    derivative(x, y) {
         throw new TypeError("Method not implemented");
     };
     /**
-     * Find constant c(x,y).
-     * @param {number} x - initial x-value.
-     * @param {number} y - initial y-value.
+     * Find constant c(x0,y0).
+     * @param {number} x0 - initial x-value.
+     * @param {number} y0 - initial y-value.
      */
-    cons(x, y) {
+    constant(x0, y0) {
         throw new TypeError("Method not implemented");
     };
     /**
-     * Calculate exact solution y(x,c).
+     * Calculate function y(x,x0,y0).
      * @param {number} x - x-value.
-     * @param {number} c - constant.
+     * @param {number} x0 - initial x-value.
+     * @param {number} y0 - initial y-value.
      */
-    func(x, c) {
+    function(x, x0, y0) {
         throw new TypeError("Method not implemented");
     };
 };

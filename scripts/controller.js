@@ -1,24 +1,24 @@
-import equation from "./equations/v11.js"
-import exact from "./graphs/exact.js"
-import euler from "./graphs/euler.js"
-import eulerP from "./graphs/eulerP.js"
-import runge2 from "./graphs/runge2.js"
-import runge4 from "./graphs/runge4.js"
+import exact from "./graphs/exact/v11.js"
+import euler from "./graphs/approximate/euler.js"
+import eulerP from "./graphs/approximate/eulerP.js"
+import runge2 from "./graphs/approximate/runge2.js"
+import runge4 from "./graphs/approximate/runge4.js"
+
 import { CInput } from "./dataBind.js"
 
 export function recalculate(x0, y0, X, N) {
     let h = (X - x0) / N;
-    let xs = getXs(x0, h, N);
+    let inputs = calculateInputs(x0, h, N);
 
-    exact.update(xs, y0, equation.cons, equation.func);
-    runge4.update(xs, y0, h, exact.exac, equation.deri);
-    eulerP.update(xs, y0, h, exact.exac, equation.deri);
-    euler.update(xs, y0, h, exact.exac, equation.deri);
+    exact.update(inputs, y0);
+    runge4.update(inputs, y0, h, exact.values, exact.equation.derivative);
+    eulerP.update(inputs, y0, h, exact.values, exact.equation.derivative);
+    euler.update(inputs, y0, h, exact.values, exact.equation.derivative);
 
-    CInput.value = exact.cons;
-    xs = exact.round(xs);
-    drawFunctions(xs);
-    drawErrors(xs);
+    CInput.value = exact.constant;
+    inputs = exact.round(inputs);
+    drawFunctions(inputs);
+    drawErrors(inputs);
 }
 
 function drawFunctions(xs) {
@@ -31,10 +31,10 @@ function drawFunctions(xs) {
         data: {
             labels: xs,
             datasets: [
-                runge4.createDataset(runge4.appr),
-                eulerP.createDataset(eulerP.appr),
-                euler.createDataset(euler.appr),
-                exact.createDataset(exact.exac),
+                runge4.createDataset(runge4.values),
+                eulerP.createDataset(runge4.values),
+                euler.createDataset(runge4.values),
+                exact.createDataset(exact.values),
             ],
         },
         options: {
@@ -46,7 +46,8 @@ function drawFunctions(xs) {
                 }
             },
             tooltips: {
-                enable: false,
+                mode: 'index',
+                intersect: false,
             },
             hover: {
                 mode: 'nearest',
@@ -70,9 +71,9 @@ function drawErrors(xs) {
         data: {
             labels: xs,
             datasets: [
-                runge4.createDataset(runge4.erro),
-                eulerP.createDataset(eulerP.erro),
-                euler.createDataset(euler.erro),
+                runge4.createDataset(runge4.errors),
+                eulerP.createDataset(eulerP.errors),
+                euler.createDataset(euler.errors),
             ],
         },
         options: {
@@ -84,7 +85,8 @@ function drawErrors(xs) {
                 }
             },
             tooltips: {
-                enable: false,
+                mode: 'index',
+                intersect: false,
             },
             hover: {
                 mode: 'nearest',
@@ -104,12 +106,12 @@ function drawErrors(xs) {
  * @param {number} h evaluation step.
  * @param {number} N number of steps.
  */
-function getXs(x0, h, N) {
-    let x = [];
+function calculateInputs(x0, h, N) {
+    let inputs = [];
 
     for (let i = 0; i <= N; i++) {
-        x.push(x0 + i * h);
+        inputs.push(x0 + i * h);
     }
 
-    return x;
+    return inputs;
 }

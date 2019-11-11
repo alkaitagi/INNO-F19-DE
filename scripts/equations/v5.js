@@ -4,15 +4,15 @@ class v5 extends base {
     constructor() {
         super();
     };
-    deri(x, y) {
-        return x * y * (1 - y * y);
+    derivative(x, y) {
+        return 2 * x * (x * x + y);
     };
-    cons(x, y) {
-        return Math.log(y / Math.sqrt(1 - y * y)) - x * x / 2;
+    constant(x0, y0) {
+        return (y0 + x0 * x0 + 1) / Math.exp(x0 * x0);
     };
-    func(x, c) {
-        let e = Math.exp(x * x + c);
-        return Math.sqrt(e / (1 + e));
+    function(x, x0, y0) {
+        let c = this.constant(x0, y0);
+        return c * Math.exp(x * x) - x * x - 1;
     };
 };
 
