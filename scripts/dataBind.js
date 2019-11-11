@@ -1,9 +1,14 @@
 import { recalculate } from "./controller.js"
 
+export let CInput = {};
+
 Chart.defaults.global.animation.duration = 200;
 
 document.addEventListener("DOMContentLoaded", () => {
-    window.canvas = document.querySelector("#graph canvas").getContext("2d");
+    window.functionCanvas = document.querySelector("#function canvas").getContext("2d");
+    window.errorCanvas = document.querySelector("#error canvas").getContext("2d");
+
+    CInput = document.getElementById("C");
 
     let inputs = [];
     function callback() {

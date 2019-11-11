@@ -5,7 +5,7 @@ class eulerP extends base {
     constructor() {
         super();
         this.method = approximation.method;
-        this.dataset = {
+        this.styling = {
             fill: false,
             label: "Euler improved",
             backgroundColor: "#A3BE8C",

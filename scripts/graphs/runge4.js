@@ -5,7 +5,7 @@ class runge4 extends base {
     constructor() {
         super();
         this.method = approximation.method;
-        this.dataset = {
+        this.styling = {
             fill: false,
             label: "Runge-Kutta 4nd",
             backgroundColor: "#BF616A",

@@ -33,11 +33,14 @@
                 <p>N</p>
                 <input id="N" type=number value=10 min=1 step=1 />
             </div>
+            <div class="param">
+                <p>C</p>
+                <input id="C" type=number value=0 step=0.001 readonly />
+            </div>
         </div>
-        <div id="canvas"><canvas></canvas></div>
+        <div class="chart" id="function"><canvas></canvas></div>
+        <div class="chart" id="error"><canvas></canvas></div>
     </div>
-
-    <iframe id="report" src="report.html" seamless style="width: 100%; height: 1000px;"></iframe>
 </body>
 
 </html>

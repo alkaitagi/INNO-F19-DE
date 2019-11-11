@@ -9,7 +9,7 @@ export default class base {
      * @param {number} x - x-value.
      * @param {number} y - y-value.
      */
-    deriv(x, y) {
+    deri(x, y) {
         throw new TypeError("Method not implemented");
     };
     /**
@@ -17,7 +17,7 @@ export default class base {
      * @param {number} x - initial x-value.
      * @param {number} y - initial y-value.
      */
-    const(x, y) {
+    cons(x, y) {
         throw new TypeError("Method not implemented");
     };
     /**
@@ -25,7 +25,7 @@ export default class base {
      * @param {number} x - x-value.
      * @param {number} c - constant.
      */
-    funct(x, c) {
+    func(x, c) {
         throw new TypeError("Method not implemented");
     };
 };

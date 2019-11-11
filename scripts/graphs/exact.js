@@ -3,28 +3,29 @@ import base from "./base.js";
 class exact extends base {
     constructor() {
         super();
-        this.dataset = {
+        this.styling = {
             label: "Exact",
             backgroundColor: "#D8DEE9",
             borderColor: "#0000",
         };
     };
+    exac = [0];
+    cons = 0;
     /**
     * Calculate dataset for array of x.
     * @param {number} x - x-values array.
     * @param {number} y0 - initial y-value.
     * @param {object} equation - equation instance.
     */
-    update(x, y0, equation) {
-        let y = [y0];
-        let c = equation.const(x[0], y0);
+    update(x, y0, cons, func) {
+        this.exac = [y0];
+        this.cons = this.round([cons(x[0], y0)])[0];
 
         for (let i = 0; i < x.length; i++) {
-            y.push(equation.funct(x[i], c));
+            this.exac.push(func(x[i], this.cons));
         }
 
-        this.dataset.data = y;
-        return this.dataset;
+        this.exac = this.round(this.exac);
     };
 };
 

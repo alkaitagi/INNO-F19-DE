@@ -1,6 +1,6 @@
 import base from "./base.js";
 
-class v11 extends base {
+class v5 extends base {
     constructor() {
         super();
     };
@@ -16,4 +16,4 @@ class v11 extends base {
     };
 };
 
-export default new v11();
+export default new v5();
