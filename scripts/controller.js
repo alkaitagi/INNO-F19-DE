@@ -6,6 +6,27 @@ import runge4 from "./graphs/approximate/runge4.js"
 import { CInput } from "./dataBind.js"
 
 let approximations = [runge4, eulerP, euler];
+let options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    elements: {
+        point: {
+            radius: 0
+        }
+    },
+    tooltips: {
+        mode: 'index',
+        intersect: false,
+    },
+    hover: {
+        mode: 'nearest',
+        intersect: true
+    },
+    title: {
+        display: true,
+        text: 'Errors',
+    },
+}
 
 /**
  * Returns array of x-values.
@@ -37,7 +58,7 @@ export function recalculate(x0, y0, X, N0, N) {
 }
 
 function drawFunctions(xs) {
-    if (window.charts.function && window.charts.function !== null) {
+    if (window.charts.function !== null) {
         window.charts.function.destroy();
     }
 
@@ -75,7 +96,7 @@ function drawFunctions(xs) {
 }
 
 function drawLocalErrors(xs) {
-    if (window.charts.localError && window.charts.localError !== null) {
+    if (window.charts.localError !== null) {
         window.charts.localError.destroy();
     }
 
@@ -87,26 +108,23 @@ function drawLocalErrors(xs) {
                 ...approximations.map(a => a.createDataset(a.errors)),
             ],
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            elements: {
-                point: {
-                    radius: 0
-                }
-            },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            },
-            title: {
-                display: true,
-                text: 'Errors',
-            },
-        }
+        options: options,
+    });
+}
+
+function drawGlobalErrors(xs) {
+    if (window.charts.globalError !== null) {
+        window.charts.globalError.destroy();
+    }
+
+    window.charts.globalError = new Chart(window.canvases.globalError, {
+        type: 'line',
+        data: {
+            labels: xs,
+            datasets: [
+                ...approximations.map(a => a.createDataset(a.errors)),
+            ],
+        },
+        options: options,
     });
 }

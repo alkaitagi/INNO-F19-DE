@@ -6,7 +6,11 @@ Chart.defaults.global.animation.duration = 200;
 
 document.addEventListener("DOMContentLoaded", () => {
     window.canvases = {};
-    window.charts = {};
+    window.charts = {
+        function: null,
+        localError: null,
+        globalError: null
+    };
 
     window.canvases.function = document.querySelector("#function canvas").getContext("2d");
     window.canvases.localError = document.querySelector("#localError canvas").getContext("2d");
