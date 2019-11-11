@@ -6,7 +6,6 @@ import runge2 from "./graphs/runge2.js"
 import runge4 from "./graphs/runge4.js"
 
 export function recalculate(x0, y0, X, N) {
-    let canvas = document.querySelector("#graph canvas").getContext("2d");
     let h = (X - x0) / N;
 
     let xs = getXs(x0, h, N);
@@ -14,7 +13,7 @@ export function recalculate(x0, y0, X, N) {
     if (window.chart && window.chart !== null) {
         window.chart.destroy();
     }
-    window.chart = new Chart(canvas, {
+    window.chart = new Chart(window.canvas, {
         type: 'line',
         data: {
             labels: xs,
@@ -22,7 +21,7 @@ export function recalculate(x0, y0, X, N) {
                 runge4.update(xs, y0, h, v11.f),
                 eulerP.update(xs, y0, h, v11.f),
                 euler.update(xs, y0, h, v11.f),
-                new exact(v11).update(xs, y0)
+                exact.update(xs, y0, v11)
             ],
         },
         options: {

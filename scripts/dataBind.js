@@ -3,6 +3,8 @@ import { recalculate } from "./controller.js"
 Chart.defaults.global.animation.duration = 200;
 
 document.addEventListener("DOMContentLoaded", () => {
+    window.canvas = document.querySelector("#graph canvas").getContext("2d");
+
     let inputs = [];
     function callback() {
         recalculate(...inputs.map(item => parseFloat(item.value)));
