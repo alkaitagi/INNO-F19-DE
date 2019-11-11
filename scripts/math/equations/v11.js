@@ -8,12 +8,11 @@ class v11 extends base {
         return x * y * (1 - y * y);
     };
     constant(x0, y0) {
-        let y2 = y0 * y0;
-        return (Math.log(Math.abs(y2 / (1 - y2))) - x0 * x0) / 2;
+        return Math.exp(x0 * x0) * (1 / (y0 * y0) - 1);
     };
     function(x, x0, y0) {
-        let e = Math.exp(x * x + this.constant(x0, y0));
-        return Math.sign(y0) * Math.sqrt(e / (1 + e));
+        let e = Math.exp(x * x);
+        return Math.sign(y0) * Math.sqrt(e / (this.constant(x0, y0) + e));
     };
 };
 
