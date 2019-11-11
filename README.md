@@ -46,7 +46,9 @@ $C = 0$
 
 ### Particular solution
 
-$y=\plusmn\sqrt{\frac{e^{x^2}}{1+e^{x^2}}}$
+since $y_0$ is positive, we pick $+$ sign:
+
+$y=\sqrt{\frac{e^{x^2}}{1+e^{x^2}}}$
 
 ### Discontuinuity points
 
