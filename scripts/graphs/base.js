@@ -17,7 +17,7 @@ export default class base {
     /**
     * Calculate dataset for array of x.
     * @param {number} x - x-values array.
-    * @param {number} y - initial y-value.
+    * @param {number} y0 - initial y-value.
     * @param {number} h - x-step.
     * @param {number} f - y'=f(x,y) function to approximate.
     */
