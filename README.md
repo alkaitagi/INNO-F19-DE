@@ -1,8 +1,6 @@
 # DE Computational practicum
 
-## Solving the equation
-
-### General solution
+## General solution
 
 $y'=xy-xy^3$
 
@@ -18,9 +16,9 @@ using partial fraction decomposition:
 
 $\int\frac{dy}{y}-\frac{1}{2}\int\frac{dy}{1+y}+\frac{1}{2}\int\frac{dy}{1-y}=\int xdx$
 
-$\ln|\frac{y}{\sqrt{(1+y)(1-y)}}|=\frac{x^2}{2}+\hat{C}$
+$\ln|\frac{y}{\sqrt{1-y^2}}|=\frac{x^2}{2}+\hat{C}$
 
-$\frac{y}{\sqrt{(1+y)(1-y)}}=e^{\frac{x^2}{2}+\hat{C}}$
+$\frac{y}{\sqrt{1-y^2}}=e^{\frac{x^2}{2}+\hat{C}}$
 
 squaring both side:
 
@@ -32,7 +30,7 @@ $y^2=\frac{e^{x^2+C}}{1+e^{x^2+C}}$
 
 $y=\plusmn\sqrt{\frac{e^{x^2+C}}{1+e^{x^2+C}}}$
 
-### Initial value problem
+## Initial value problem
 
 $y(0)=\sqrt{\frac{1}{2}}$
 
@@ -44,12 +42,12 @@ $1+e^C=2e^C$
 
 $C = 0$
 
-### Particular solution
+## Particular solution
 
 since $y_0$ is positive, we pick $+$ sign:
 
 $y=\sqrt{\frac{e^{x^2}}{1+e^{x^2}}}$
 
-### Discontuinuity points
+## Discontuinuity points
 
-There are no discontinuity points. However $y_0$ my not be equal $0$ or $\plusmn1$.
+There are no discontinuity points. However, if $y_0 = 0, -1, 1$ there are 
