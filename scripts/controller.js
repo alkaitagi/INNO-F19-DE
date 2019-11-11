@@ -7,7 +7,23 @@ import { CInput } from "./dataBind.js"
 
 let approximations = [runge4, eulerP, euler];
 
-export function recalculate(x0, y0, X, N) {
+/**
+ * Returns array of x-values.
+ * @param {number} x0 initial x-value.
+ * @param {number} h evaluation step.
+ * @param {number} N number of steps.
+ */
+function calculateInputs(x0, h, N) {
+    let inputs = [];
+
+    for (let i = 0; i <= N; i++) {
+        inputs.push(x0 + i * h);
+    }
+
+    return inputs;
+}
+
+export function recalculate(x0, y0, X, N0, N) {
     let h = (X - x0) / N;
     let inputs = calculateInputs(x0, h, N);
 
@@ -17,15 +33,15 @@ export function recalculate(x0, y0, X, N) {
     CInput.value = exact.constant;
     inputs = exact.round(inputs);
     drawFunctions(inputs);
-    drawErrors(inputs);
+    drawLocalErrors(inputs);
 }
 
 function drawFunctions(xs) {
-    if (window.functionChart && window.functionChart !== null) {
-        window.functionChart.destroy();
+    if (window.charts.function && window.charts.function !== null) {
+        window.charts.function.destroy();
     }
 
-    window.functionChart = new Chart(window.functionCanvas, {
+    window.charts.function = new Chart(window.canvases.function, {
         type: 'line',
         data: {
             labels: xs,
@@ -58,12 +74,12 @@ function drawFunctions(xs) {
     });
 }
 
-function drawErrors(xs) {
-    if (window.errorChart && window.errorChart !== null) {
-        window.errorChart.destroy();
+function drawLocalErrors(xs) {
+    if (window.charts.localError && window.charts.localError !== null) {
+        window.charts.localError.destroy();
     }
 
-    window.errorChart = new Chart(window.errorCanvas, {
+    window.charts.localError = new Chart(window.canvases.localError, {
         type: 'line',
         data: {
             labels: xs,
@@ -93,20 +109,4 @@ function drawErrors(xs) {
             },
         }
     });
-}
-
-/**
- * Returns array of x-values.
- * @param {number} x0 initial x-value.
- * @param {number} h evaluation step.
- * @param {number} N number of steps.
- */
-function calculateInputs(x0, h, N) {
-    let inputs = [];
-
-    for (let i = 0; i <= N; i++) {
-        inputs.push(x0 + i * h);
-    }
-
-    return inputs;
 }

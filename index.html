@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>DE Practicum</title>
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="graph.css" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/graph.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
@@ -30,6 +30,10 @@
                 <input id="X" type=number value=3 />
             </div>
             <div class="param">
+                <p>N0</p>
+                <input id="N0" type=number value=10 min=1 step=1 />
+            </div>
+            <div class="param">
                 <p>N</p>
                 <input id="N" type=number value=10 min=1 step=1 />
             </div>
@@ -39,7 +43,8 @@
             </div>
         </div>
         <div class="chart" id="function"><canvas></canvas></div>
-        <div class="chart" id="error"><canvas></canvas></div>
+        <div class="chart" id="localError"><canvas></canvas></div>
+        <div class="chart" id="globalError"><canvas></canvas></div>
     </div>
 </body>
 
