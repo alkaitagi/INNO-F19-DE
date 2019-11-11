@@ -1,27 +1,31 @@
-export default {
+export default class base {
+    constructor() {
+        if (new.target === base) {
+            throw new TypeError("Cannot construct Abstract instances");
+        }
+    };
     /**
      * Calcuate derivative y'(x,y).
      * @param {number} x - x-value.
      * @param {number} y - y-value.
      */
     f(x, y) {
-        return x * y * (1 - y * y);
-    },
+        throw new TypeError("Method not implemented");
+    };
     /**
      * Find constant c(x,y).
      * @param {number} x - initial x-value.
      * @param {number} y - initial y-value.
      */
     c(x, y) {
-        return Math.log(y / Math.sqrt(1 - y * y)) - x * x / 2;
-    },
+        throw new TypeError("Method not implemented");
+    };
     /**
      * Calculate exact solution y(x,c).
      * @param {number} x - x-value.
      * @param {number} c - constant.
      */
     y(x, c) {
-        let e = Math.exp(x * x + c);
-        return Math.sqrt(e / (1 + e));
-    }
+        throw new TypeError("Method not implemented");
+    };
 };

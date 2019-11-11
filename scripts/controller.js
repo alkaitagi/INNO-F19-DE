@@ -1,8 +1,9 @@
-import equation from "./equations/11.js"
-import euler from "./approximations/euler.js"
-import eulerP from "./approximations/eulerP.js"
-import runge2 from "./approximations/runge2.js"
-import runge4 from "./approximations/runge4.js"
+import v11 from "./equations/v11.js"
+import exact from "./graphs/exact.js"
+import euler from "./graphs/euler.js"
+import eulerP from "./graphs/eulerP.js"
+import runge2 from "./graphs/runge2.js"
+import runge4 from "./graphs/runge4.js"
 
 export function recalculate(x0, y0, X, N) {
     let canvas = document.querySelector("#graph canvas").getContext("2d");
@@ -17,32 +18,12 @@ export function recalculate(x0, y0, X, N) {
         type: 'line',
         data: {
             labels: xs,
-            datasets: [{
-                fill: false,
-                label: runge4.name,
-                backgroundColor: "#BF616A",
-                borderColor: "#BF616A",
-                borderDash: [5, 5],
-                data: approximate(xs, y0, h, runge4.method, equation.f)
-            }, {
-                fill: false,
-                label: eulerP.name,
-                backgroundColor: "#A3BE8C",
-                borderColor: "#A3BE8C",
-                data: approximate(xs, y0, h, eulerP.method, equation.f)
-            }, {
-                fill: false,
-                label: euler.name,
-                backgroundColor: "#000",
-                borderColor: "#000",
-                data: approximate(xs, y0, h, euler.method, equation.f)
-            },
-            {
-                label: "Exact",
-                backgroundColor: "#D8DEE9",
-                borderColor: "#0000",
-                data: exact(xs, y0, equation.c, equation.y)
-            }]
+            datasets: [
+                runge4.update(xs, y0, h, v11.f),
+                eulerP.update(xs, y0, h, v11.f),
+                euler.update(xs, y0, h, v11.f),
+                new exact(v11).update(xs, y0)
+            ],
         },
         options: {
             responsive: true,
@@ -54,7 +35,19 @@ export function recalculate(x0, y0, X, N) {
             hover: {
                 mode: 'nearest',
                 intersect: true
-            }
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        presicion: 3
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        presicion: 3
+                    }
+                }],
+            },
         }
     });
 }
@@ -72,40 +65,5 @@ function getXs(x0, h, N) {
         x.push(x0 + i * h);
     }
 
-    return round(x);
-}
-
-function exact(x, y0, c, y) {
-    let ys = [y0];
-    let cv = c(x[0], y0);
-
-    for (let i = 0; i < x.length; i++) {
-        ys.push(y(x[i], cv));
-    }
-
-    return round(ys);
-}
-
-/**
- * Returns array of y-values.
- * @param {number} x0 initial x-value.
- * @param {number} y0 initial y-value.
- * @param {number} h evaluation step.
- * @param {number} m(x, y, h, f) approximation method.
- * @param {number} y'(x,y) function.
- */
-function approximate(x, y0, h, m, f) {
-    let y = [y0];
-
-    for (let i = 0; i < x.length; i++) {
-        y.push(m(x[i], y[i], h, f));
-    }
-
-    return round(y);
-}
-
-function round(x) {
-    for (let i = 0; i < x.length; i++)
-        x[i] = +(Math.round(x[i] + "e+5") + "e-5");
     return x;
 }
