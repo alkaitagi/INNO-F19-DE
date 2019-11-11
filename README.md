@@ -46,9 +46,9 @@ $C + 1 = 2$
 
 $C = 1$
 
-and general formula for $C$:
+and we can obtain general formula for $C$:
 
-$C = \frac{e^{x_0^2}}{y_0^2} - e^{x_0^2}$
+$C = e^{x_0^2}(\frac{1}{y_0^2} - 1)$
 
 ## Particular solution
 
@@ -57,5 +57,3 @@ since $y_0$ is positive, we pick $+$ sign:
 $y=\sqrt{\frac{e^{x^2}}{C+e^{x^2}}}$
 
 ## Discontuinuity points
-
-If $C < 0$, the function is not defined on the interval $x\in[-\ln\sqrt{-C};\ln\sqrt{-C}]$
