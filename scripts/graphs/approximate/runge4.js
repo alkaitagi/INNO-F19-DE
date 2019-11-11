@@ -7,7 +7,7 @@ class runge4 extends base {
         this.approximation = approximation;
         this.styling = {
             fill: false,
-            label: "Runge-Kutta 4nd",
+            label: "Runge-Kutta 4th",
             backgroundColor: "#BF616A",
             borderColor: "#BF616A",
             borderDash: [5, 5],
