@@ -16,7 +16,7 @@ export default class baseExact extends base {
     };
     /**
     * Calculate dataset for array of x.
-    * @param {number} inputs - x-values array.
+    * @param {number[]} inputs - x-values array.
     * @param {number} y0 - initial y-value.
     */
     updateValues(inputs, y0) {

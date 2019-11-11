@@ -12,9 +12,30 @@ export default class base {
         this.values = [];
         this.styling = {};
     };
-    createDataset(values) {
+    /**
+    * Returns styled dataset.
+    * @param {number[]} inputs - array of values to insert.
+    */
+    createDataset(inputs) {
         let copy = Object.assign({}, this.styling);
-        copy.data = values;
+        copy.data = inputs;
         return copy;
+    }
+    /**
+    * Returns array of x-values.
+    * @param {number} x0 - initial x-value.
+    * @param {number} X - final x-value.
+    * @param {number} N - number of steps.
+    */
+    calculateInputs(x0, X, N) {
+        let inputs = [];
+        let h = (X - x0) / N;
+
+        for (let i = 0; i <= N; i++) {
+            inputs.push(x0 + i * h);
+        }
+
+        return inputs;
+
     }
 }

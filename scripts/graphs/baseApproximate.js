@@ -14,35 +14,65 @@ export default class baseApproximate extends base {
     * Calculate dataset for array of x.
     * @param {number[]} inputs - x-values array.
     * @param {number} y0 - initial y-value.
-    * @param {number} h - x-step.
     * @param {function} derivative - y'=f(x,y) derivative function to approximate.
     */
-    updateValues(inputs, y0, derivative) {
+    calculateValues(inputs, y0, derivative) {
         let values = [y0];
         let h = inputs[1] - inputs[0];
 
-        for (let i = 0; i < inputs.length; i++) {
+        for (let i = 0; i < inputs.length - 1; i++) {
             values.push(this.approximation.method(inputs[i], values[i], h, derivative));
         }
 
-        this.values = this.round(values);
+        return values;
+    }
+    /**
+    * Calculate dataset for array of x.
+    * @param {number[]} inputs - x-values array.
+    * @param {number} y0 - initial y-value.
+    * @param {function} derivative - y'=f(x,y) derivative function to approximate.
+    */
+    updateValues(inputs, y0, derivative) {
+        this.values = this.round(this.calculateValues(inputs, y0, derivative));
     };
-
+    /**
+    * Calculate dataset for array of x.
+    * @param {number[]} exacts - exact x-values array.
+    */
     updateLocalErrors(exacts) {
-        let localErrors = [0];
+        let localErrors = [];
 
         for (let i = 0; i < exacts.length; i++) {
             localErrors.push(Math.abs(this.values[i + 1] - exacts[i + 1]));
         }
-
         this.localErrors = this.round(localErrors);
     }
+    /**
+    * Calculate dataset for array of x.
+    * @param {number} x0 - initial x-values.
+    * @param {number} y0 - initial y-value.
+    * @param {function} derivative - y'=f(x,y) derivative function to approximate.
+    * @param {number[]} exacts - exact x-values array.
+    * @param {number} X - final x-values.
+    * @param {number} N0 - initial step index.
+    * @param {number} N - final step index.
+    */
+    updateGlobalErrors(x0, y0, derivative, exacts, X, N0, N) {
+        let globalErrors = [];
 
-    updateGlobalErrors(exacts, N0, N) {
-        let globalErrors = [0];
-
+        let printed = 0;
+        
         for (let i = N0; i <= N; i++) {
-            //localErrors.push(Math.abs(this.values[i + 1] - exacts[i + 1]));
+            let values = this.calculateValues(
+                this.calculateInputs(x0, X, i),
+                y0,
+                derivative
+            );
+            let last = exacts.length - 1;
+
+
+
+            globalErrors.push(Math.abs(values[last] - exacts[last]));
         }
 
         this.globalErrors = this.round(globalErrors);

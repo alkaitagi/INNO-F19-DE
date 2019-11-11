@@ -7,50 +7,15 @@ import { CInput } from "./dataBind.js"
 
 let inputs = [];
 let approximations = [runge4, eulerP, euler];
-let options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    elements: {
-        point: {
-            radius: 0
-        }
-    },
-    tooltips: {
-        mode: 'index',
-        intersect: false,
-    },
-    hover: {
-        mode: 'nearest',
-        intersect: true
-    },
-    title: {
-        display: true,
-        text: 'Errors',
-    },
-}
-
-/**
- * Returns array of x-values.
- * @param {number} x0 initial x-value.
- * @param {number} h evaluation step.
- * @param {number} N number of steps.
- */
-function calculateInputs(x0, h, N) {
-    inputs = [];
-
-    for (let i = 0; i <= N; i++) {
-        inputs.push(x0 + i * h);
-    }
-}
 
 export function recalculate(x0, y0, X, N0, N) {
-    calculateInputs(x0, (X - x0) / N, N);
+    inputs = exact.calculateInputs(x0, X, N);
 
     exact.updateValues(inputs, y0);
     approximations.forEach(function (a) {
         a.updateValues(inputs, y0, exact.equation.derivative);
         a.updateLocalErrors(exact.values);
-        a.updateGlobalErrors(exact.values, N0, N);
+        a.updateGlobalErrors(x0, y0, exact.equation.derivative, exact.values, X, N0, N);
     });
 
     CInput.value = exact.constant;
@@ -93,9 +58,9 @@ function drawFunctions() {
             },
             title: {
                 display: true,
-                text: 'Approximations',
+                text: 'Functions',
             },
-        }
+        },
     });
 }
 
@@ -112,7 +77,27 @@ function drawLocalErrors() {
                 ...approximations.map(a => a.createDataset(a.localErrors)),
             ],
         },
-        options: options,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            elements: {
+                point: {
+                    radius: 0
+                }
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            title: {
+                display: true,
+                text: 'Local errors',
+            },
+        },
     });
 }
 
@@ -129,6 +114,26 @@ function drawGlobalErrors() {
                 ...approximations.map(a => a.createDataset(a.globalErrors)),
             ],
         },
-        options: options,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            elements: {
+                point: {
+                    radius: 0
+                }
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            title: {
+                display: true,
+                text: 'Global errors',
+            },
+        },
     });
 }
