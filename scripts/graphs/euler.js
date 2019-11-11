@@ -1,10 +1,10 @@
 import base from "./base.js";
-import method from "../approximations/euler.js"
+import approximation from "../approximations/euler.js"
 
 class euler extends base {
     constructor() {
         super();
-        this.method = method;
+        this.method = approximation.method;
         this.dataset = {
             fill: false,
             label: "Euler",

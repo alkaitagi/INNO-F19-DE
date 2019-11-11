@@ -18,9 +18,9 @@ export function recalculate(x0, y0, X, N) {
         data: {
             labels: xs,
             datasets: [
-                runge4.update(xs, y0, h, v11.f),
-                eulerP.update(xs, y0, h, v11.f),
-                euler.update(xs, y0, h, v11.f),
+                runge4.update(xs, y0, h, v11.deriv),
+                eulerP.update(xs, y0, h, v11.deriv),
+                euler.update(xs, y0, h, v11.deriv),
                 exact.update(xs, y0, v11)
             ],
         },

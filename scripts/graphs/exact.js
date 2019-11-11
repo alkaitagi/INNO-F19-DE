@@ -17,10 +17,10 @@ class exact extends base {
     */
     update(x, y0, equation) {
         let y = [y0];
-        let c = equation.c(x[0], y0);
+        let c = equation.const(x[0], y0);
 
         for (let i = 0; i < x.length; i++) {
-            y.push(equation.y(x[i], c));
+            y.push(equation.funct(x[i], c));
         }
 
         this.dataset.data = y;

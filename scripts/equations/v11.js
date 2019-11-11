@@ -4,13 +4,13 @@ class v11 extends base {
     constructor() {
         super();
     };
-    f(x, y) {
+    deriv(x, y) {
         return x * y * (1 - y * y);
     };
-    c(x, y) {
+    const(x, y) {
         return Math.log(y / Math.sqrt(1 - y * y)) - x * x / 2;
     };
-    y(x, c) {
+    funct(x, c) {
         let e = Math.exp(x * x + c);
         return Math.sqrt(e / (1 + e));
     };
