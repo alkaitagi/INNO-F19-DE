@@ -8,8 +8,8 @@ class euler extends base {
         this.styling = {
             fill: false,
             label: "Euler",
-            backgroundColor: "#000",
-            borderColor: "#000",
+            backgroundColor: "#EBCB8B",
+            borderColor: "#EBCB8B",
         }
     }
 };

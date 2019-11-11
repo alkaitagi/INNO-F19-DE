@@ -6,14 +6,14 @@ import runge4 from "./graphs/approximate/runge4.js"
 
 import { CInput } from "./dataBind.js"
 
+let approximations = [runge4, eulerP, euler];
+
 export function recalculate(x0, y0, X, N) {
     let h = (X - x0) / N;
     let inputs = calculateInputs(x0, h, N);
 
     exact.update(inputs, y0);
-    runge4.update(inputs, y0, h, exact.values, exact.equation.derivative);
-    eulerP.update(inputs, y0, h, exact.values, exact.equation.derivative);
-    euler.update(inputs, y0, h, exact.values, exact.equation.derivative);
+    approximations.forEach(a => a.update(inputs, y0, h, exact.values, exact.equation.derivative));
 
     CInput.value = exact.constant;
     inputs = exact.round(inputs);
@@ -31,9 +31,7 @@ function drawFunctions(xs) {
         data: {
             labels: xs,
             datasets: [
-                runge4.createDataset(runge4.values),
-                eulerP.createDataset(runge4.values),
-                euler.createDataset(runge4.values),
+                ...approximations.map(a => a.createDataset(a.values)),
                 exact.createDataset(exact.values),
             ],
         },
@@ -71,9 +69,7 @@ function drawErrors(xs) {
         data: {
             labels: xs,
             datasets: [
-                runge4.createDataset(runge4.errors),
-                eulerP.createDataset(eulerP.errors),
-                euler.createDataset(euler.errors),
+                ...approximations.map(a => a.createDataset(a.errors)),
             ],
         },
         options: {

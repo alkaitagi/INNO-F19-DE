@@ -8,7 +8,7 @@ export default class baseExact extends base {
         super();
         this.styling = {
             label: "Exact",
-            backgroundColor: "#D8DEE999",
+            backgroundColor: "#D8DEE9",
             borderColor: "#0000",
         };
         this.equation = {};
