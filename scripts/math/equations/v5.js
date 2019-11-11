@@ -11,8 +11,7 @@ class v5 extends base {
         return (y0 + x0 * x0 + 1) / Math.exp(x0 * x0);
     };
     function(x, x0, y0) {
-        let c = this.constant(x0, y0);
-        return c * Math.exp(x * x) - x * x - 1;
+        return this.constant(x0, y0) * Math.exp(x * x) - x * x - 1;
     };
 };
 

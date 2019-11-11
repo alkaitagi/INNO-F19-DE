@@ -60,19 +60,13 @@ export default class baseApproximate extends base {
     updateGlobalErrors(x0, y0, derivative, exacts, X, N0, N) {
         let globalErrors = [];
 
-        let printed = 0;
-        
         for (let i = N0; i <= N; i++) {
             let values = this.calculateValues(
                 this.calculateInputs(x0, X, i),
                 y0,
                 derivative
             );
-            let last = exacts.length - 1;
-
-
-
-            globalErrors.push(Math.abs(values[last] - exacts[last]));
+            globalErrors.push(Math.abs(values[values.length - 1] - exacts[exacts.length - 1]));
         }
 
         this.globalErrors = this.round(globalErrors);

@@ -11,9 +11,8 @@ class v11 extends base {
         return Math.log(y0 / Math.sqrt(1 - y0 * y0)) - x0 * x0 / 2;
     };
     function(x, x0, y0) {
-        let c = this.constant(x0, y0);
-        let e = Math.exp(x * x + c);
-        return Math.sign(c) * Math.sqrt(e / (1 + e));
+        let e = Math.exp(x * x + this.constant(x0, y0));
+        return Math.sign(y0) * Math.sqrt(e / (1 + e));
     };
 };
 

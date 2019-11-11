@@ -1,4 +1,4 @@
-import exact from "./graphs/exact/v5.js"
+import exact from "./graphs/exact/v11.js"
 import euler from "./graphs/approximate/euler.js"
 import eulerP from "./graphs/approximate/eulerP.js"
 import runge4 from "./graphs/approximate/runge4.js"
