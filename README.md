@@ -107,19 +107,19 @@ $
 
 With our initial condition $y(0)=\sqrt\frac{1}{2}$ exact solution yeidls value in the range of $[0.7071, 3]$ (rounding results to 3 decimals). It can be observed how $C=1$ was correctly computed as well.
 
-<img src="./images/functions.png" height="250" width="400">
+<img src="./images/functions.png" height="300" width="500">
 
 If number of grid steps for approximations is decreased (N=5) behaviour of the methods can be seen more clearly. There at the point $x \approx 1.5$ all of the methods (that are *Runge-Kutta* 4th order, *Euler improved* and *Euler*) achieve particularly good approximation, before diverging right after.
 
-<img src="./images/functionsSmallN.png" height="250" width="400">
+<img src="./images/functionsSmallN.png" height="300" width="500">
 
 Same result can be obtained on the dedicated *Local errors* chart:
 
-<img src="./images/localErrors.png" height="250" width="400">
+<img src="./images/localErrors.png" height="300" width="500">
 
 And appearance of *Global errors* chart renders to be correct as they diminish while we increase the steps number:
 
-<img src="./images/globalErrors.png" height="250" width="400">
+<img src="./images/globalErrors.png" height="300" width="500">
 
 ## 3. Implementation
 
@@ -171,4 +171,4 @@ In addition to these, each graph type has its distinct features:
 
 The systems described above can be inspected in the following UML diagram.
 
-<img src="./images/umlDiagram.png" height="800" width="400">
+<img src="./images/umlDiagram.png" height="900" width="450">
