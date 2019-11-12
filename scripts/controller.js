@@ -25,6 +25,7 @@ export function recalculate(x0, y0, X, N0, N) {
     });
 
     window.CInput.value = exact.constant;
+    inputs = exact.round(inputs);
 
     drawFunctions(inputs);
     drawLocalErrors(inputs);

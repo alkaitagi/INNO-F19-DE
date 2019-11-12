@@ -34,7 +34,7 @@ export default class baseApproximate extends base {
     * @param {function} F - f(x,y) function to approximate.
     */
     updateValues(inputs, y0, F) {
-        this.values = this._round(this._calculateValues(inputs, y0, F));
+        this.values = this.round(this._calculateValues(inputs, y0, F));
     };
     /**
     * Calculate dataset for array of x.
@@ -46,7 +46,7 @@ export default class baseApproximate extends base {
         for (let i = 0; i < exacts.length; i++) {
             localErrors.push(Math.abs(this.values[i + 1] - exacts[i + 1]));
         }
-        this.localErrors = this._round(localErrors);
+        this.localErrors = this.round(localErrors);
     }
     /**
     * Calculate dataset for array of x.
@@ -66,6 +66,6 @@ export default class baseApproximate extends base {
             globalErrors.push(Math.abs(values[values.length - 1] - Y));
         }
 
-        this.globalErrors = this._round(globalErrors);
+        this.globalErrors = this.round(globalErrors);
     }
 };

@@ -27,7 +27,7 @@ export default class baseExact extends base {
             values.push(this.equation.function(inputs[i], inputs[0], y0));
         }
 
-        this.values = this._round(values);
-        this.constant = this._round([constant])[0];
+        this.values = this.round(values);
+        this.constant = this.round([constant])[0];
     };
 };

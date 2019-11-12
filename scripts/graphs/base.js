@@ -2,9 +2,8 @@ export default class base {
     /**
     * Returns styled dataset.
     * @param {number[]} inputs - array of values to round to 3 decimals.
-    * @private
     */
-    _round(inputs) {
+    round(inputs) {
         for (let i = 0; i < inputs.length; i++) {
             inputs[i] = +(Math.round(inputs[i] + "e+3") + "e-3");
         }
@@ -41,6 +40,5 @@ export default class base {
         }
 
         return inputs;
-
     }
 }
