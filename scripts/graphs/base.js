@@ -1,7 +1,7 @@
 export default class base {
     round(x) {
         for (let i = 0; i < x.length; i++) {
-            x[i] = +(Math.round(x[i] + "e+3") + "e-3");
+            x[i] = +(Math.round(x[i] + "e+4") + "e-4");
         }
         return x;
     }
