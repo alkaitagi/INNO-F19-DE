@@ -1,5 +1,12 @@
 # DE Computational practicum
 
+**Links:**
+
+- [Hosted web-app](https://alkaitagi.github.io/INNO-F19-DE/)
+- [Repository with source code](https://github.com/alkaitagi/INNO-F19-DE)
+
+**Table of contents:**
+
 - [DE Computational practicum](#de-computational-practicum)
   - [1. Analytical soltuion](#1-analytical-soltuion)
     - [1.1 Initial system](#11-initial-system)
