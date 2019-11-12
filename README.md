@@ -8,6 +8,11 @@
     - [1.4 Discontuinuity points](#14-discontuinuity-points)
     - [1.5 Final system](#15-final-system)
   - [2. Function analysis](#2-function-analysis)
+  - [3. Implementation](#3-implementation)
+    - [3.1 Managers](#31-managers)
+    - [3.2 Math classes](#32-math-classes)
+    - [3.3 Graph classes](#33-graph-classes)
+    - [3.4 UML diagram](#34-uml-diagram)
 
 ## 1. Analytical soltuion
 
@@ -104,3 +109,51 @@ If number of grid steps for approximations is decreased (N=5) behaviour of the m
 Same result can be obtained on the dedicated *Local errors* chart:
 
 <img src="./images/localErrors.png" height="250" width="400">
+
+## 3. Implementation
+
+The application was developed as a web page with JavaScript implemented logic. All the scripts can be divided into 3 cathergories:
+
+- managers
+  - conroller
+  - dataBind
+- math classes
+  - appromixations
+  - equations
+- graph classes
+  - approximate
+  - exact
+
+### 3.1 Managers
+
+**DataBind.js** module provides scaffolding functoinality by assigning callbacks to UI input fields changes that will trigger mathematical recomputations. It also provides interfaces for accessing html elements needed to be referenced for output during computation and plotting.
+
+**Controller.js** module accepts 5 inputs and then passes them into exported exact solution and approxmaions. After all the computations are finished it draws graphs using resulting arrays of values.
+
+### 3.2 Math classes
+
+All of math classes divide into 2 cathegories.
+
+**Approximations** provide singe method that accepts a point [x, y], grid step [h] and derivative function [y'(x,y)] and then utilizing its defined algorithm return approximated numerical value.
+
+**Equations** can implement any particular variant from the practicum by providing 3 discting functions: *derivative(x,y)*, *constant(x0,y0)*, *function(x, x0 ,y0)*. These functions later utilized in *exact* graphs as well as *derivate* being passed into *approxmate* graphs.
+
+### 3.3 Graph classes
+
+These classes as well divide into 2 cathegories to wrap around the corresponding math classes.
+
+Each graph contains *styling* object, *values* numerical array, and utility 3 functions:
+
+- **round** rounds array of numbers
+- **createDataset** that wraps styling around array of numbers to be plugged into chart object for drawing.
+- **calculateInputs** returns array of x-values that later are used as inputs for *approximate* and *exact* graphs.
+
+In addition to these, each graph type has its distinct features:
+
+**Approximate** wraps around *approximation* math class. As such, it can store on instance of particular *approximation* that later will be used for updating its approximation *values*, *localErrors* and *globalErrors* in its corresponding methods.
+
+**Exact** graph wraps around *exact* math class. Therefore it contains variable for storing such class instance. This instance's methods are later used for computing particular solution through finding constant by initial conditions, as well as the whole set of exact values of the functoin on a given set.
+
+### 3.4 UML diagram
+
+The systems described above can be inspected in the following diagram.

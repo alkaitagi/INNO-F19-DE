@@ -1,7 +1,5 @@
 import { recalculate } from "./controller.js"
 
-export let CInput = {};
-
 Chart.defaults.global.animation.duration = 200;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.canvases.localError = document.querySelector("#localError canvas").getContext("2d");
     window.canvases.globalError = document.querySelector("#globalError canvas").getContext("2d");
 
-    CInput = document.getElementById("C");
+    window.CInput = document.getElementById("C");
 
     let inputs = [];
     function callback() {

@@ -3,8 +3,6 @@ import euler from "./graphs/approximate/euler.js"
 import eulerP from "./graphs/approximate/eulerP.js"
 import runge4 from "./graphs/approximate/runge4.js"
 
-import { CInput } from "./dataBind.js"
-
 let inputs = [];
 let approximations = [runge4, eulerP, euler];
 
@@ -18,7 +16,7 @@ export function recalculate(x0, y0, X, N0, N) {
         a.updateGlobalErrors(x0, y0, exact.equation.derivative, exact.values, X, N0, N);
     });
 
-    CInput.value = exact.constant;
+    window.CInput.value = exact.constant;
     inputs = exact.round(inputs);
 
     drawFunctions(inputs);
