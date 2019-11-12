@@ -1,8 +1,22 @@
 # DE Computational practicum
 
-## Solving the equation
+- [DE Computational practicum](#de-computational-practicum)
+  - [1. Analytical soltuion](#1-analytical-soltuion)
+    - [1.1 General solution**](#11-general-solution)
+    - [1.2 Initial value problem](#12-initial-value-problem)
+    - [1.3 Discontuinuity points](#13-discontuinuity-points)
 
-### General solution
+## 1. Analytical soltuion
+
+$
+\begin{cases}
+    y'=xy-xy^3 \\
+    y(0)=\sqrt\frac{1}{2} \\
+    x\in(0,3)
+\end{cases}
+$
+
+### 1.1 General solution**
 
 $y'=xy-xy^3$
 
@@ -36,7 +50,7 @@ $y^2=\frac{e^{x^2}}{C_1+e^{x^2}}$
 
 $y=\plusmn\sqrt{\frac{e^{x^2}}{C_1+e^{x^2}}}$
 
-### Initial value problem
+### 1.2 Initial value problem
 
 $y(0)=\sqrt{\frac{1}{2}}$
 
@@ -52,12 +66,10 @@ and we can obtain general formula for $C$:
 
 $C = e^{x_0^2}(\frac{1}{y_0^2} - 1)$
 
-### Particular solution
-
-since $y_0$ is positive, we pick $+$ sign:
+since $y_0$ is positive, we pick $+$ sign and partucilar soltuion is:
 
 $y=\sqrt{\frac{e^{x^2}}{1+e^{x^2}}}$
 
-### Discontuinuity points
+### 1.3 Discontuinuity points
 
-The function does not have any discontinuity points.
+The particular function does not have any discontinuity points.
