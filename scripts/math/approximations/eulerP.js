@@ -4,8 +4,8 @@ class eulerP extends base {
     constructor() {
         super();
     };
-    method(x, y, h, derivative) {
-        return y + h * derivative(x + h / 2, y + h * derivative(x, y) / 2);
+    method(x, y, h, F) {
+        return y + h * F(x + h / 2, y + h * F(x, y) / 2);
     };
 };
 

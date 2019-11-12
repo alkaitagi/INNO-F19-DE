@@ -13,11 +13,18 @@ export function recalculate(x0, y0, X, N0, N) {
     approximations.forEach(function (a) {
         a.updateValues(inputs, y0, exact.equation.derivative);
         a.updateLocalErrors(exact.values);
-        a.updateGlobalErrors(x0, y0, exact.equation.derivative, exact.values, X, N0, N);
+        a.updateGlobalErrors(
+            x0,
+            y0,
+            exact.equation.derivative,
+            X,
+            exact.values[exact.values.length - 1],
+            N0,
+            N
+        );
     });
 
     window.CInput.value = exact.constant;
-    inputs = exact.round(inputs);
 
     drawFunctions(inputs);
     drawLocalErrors(inputs);

@@ -14,14 +14,15 @@ export default class baseApproximate extends base {
     * Calculate dataset for array of x.
     * @param {number[]} inputs - x-values array.
     * @param {number} y0 - initial y-value.
-    * @param {function} derivative - y'=f(x,y) derivative function to approximate.
+    * @param {function} F - f(x,y) function to approximate.
+    * @private
     */
-    calculateValues(inputs, y0, derivative) {
+    _calculateValues(inputs, y0, F) {
         let values = [y0];
         let h = inputs[1] - inputs[0];
 
         for (let i = 0; i < inputs.length - 1; i++) {
-            values.push(this.approximation.method(inputs[i], values[i], h, derivative));
+            values.push(this.approximation.method(inputs[i], values[i], h, F));
         }
 
         return values;
@@ -30,10 +31,10 @@ export default class baseApproximate extends base {
     * Calculate dataset for array of x.
     * @param {number[]} inputs - x-values array.
     * @param {number} y0 - initial y-value.
-    * @param {function} derivative - y'=f(x,y) derivative function to approximate.
+    * @param {function} F - f(x,y) function to approximate.
     */
-    updateValues(inputs, y0, derivative) {
-        this.values = this.round(this.calculateValues(inputs, y0, derivative));
+    updateValues(inputs, y0, F) {
+        this.values = this._round(this._calculateValues(inputs, y0, F));
     };
     /**
     * Calculate dataset for array of x.
@@ -45,30 +46,26 @@ export default class baseApproximate extends base {
         for (let i = 0; i < exacts.length; i++) {
             localErrors.push(Math.abs(this.values[i + 1] - exacts[i + 1]));
         }
-        this.localErrors = this.round(localErrors);
+        this.localErrors = this._round(localErrors);
     }
     /**
     * Calculate dataset for array of x.
     * @param {number} x0 - initial x-values.
     * @param {number} y0 - initial y-value.
-    * @param {function} derivative - y'=f(x,y) derivative function to approximate.
-    * @param {number[]} exacts - exact x-values array.
+    * @param {function} F - f(x,y) function to approximate.
+    * @param {number} Y - final y-value.
     * @param {number} X - final x-values.
     * @param {number} N0 - initial step index.
     * @param {number} N - final step index.
     */
-    updateGlobalErrors(x0, y0, derivative, exacts, X, N0, N) {
+    updateGlobalErrors(x0, y0, F, X, Y, N0, N) {
         let globalErrors = [];
 
         for (let i = N0; i <= N; i++) {
-            let values = this.calculateValues(
-                this.calculateInputs(x0, X, i),
-                y0,
-                derivative
-            );
-            globalErrors.push(Math.abs(values[values.length - 1] - exacts[exacts.length - 1]));
+            let values = this._calculateValues(this.calculateInputs(x0, X, i), y0, F);
+            globalErrors.push(Math.abs(values[values.length - 1] - Y));
         }
 
-        this.globalErrors = this.round(globalErrors);
+        this.globalErrors = this._round(globalErrors);
     }
 };
