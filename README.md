@@ -93,10 +93,14 @@ $
 
 ## 2. Function analysis
 
-With our initial condition $y(0)=\sqrt\frac{1}{2}$ exact solution yeidls value in the range of $[0.7071, 3]$ (rounding to 4 decimals). It can be observed how $C=1$ was correctly computed as well.
+With our initial condition $y(0)=\sqrt\frac{1}{2}$ exact solution yeidls value in the range of $[0.7071, 3]$ (rounding results to 3 decimals). It can be observed how $C=1$ was correctly computed as well.
 
 <img src="./images/functions.png" height="250" width="400">
 
-If number of grid steps for approximations is decreased (N=5) behaviour of the methods can be seen more clearly. There at the point $x \approx 1.5$ all of the methods (that are *Runge-Kutta* 4th order, *Euler improved* and *Euler*) achieve particularly good approximation.
+If number of grid steps for approximations is decreased (N=5) behaviour of the methods can be seen more clearly. There at the point $x \approx 1.5$ all of the methods (that are *Runge-Kutta* 4th order, *Euler improved* and *Euler*) achieve particularly good approximation, before diverging right after.
 
 <img src="./images/functionsSmallN.png" height="250" width="400">
+
+Same result can be obtained on the dedicated *Local errors* chart:
+
+<img src="./images/localErrors.png" height="250" width="400">

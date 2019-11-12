@@ -40,7 +40,7 @@ export default class baseApproximate extends base {
     * @param {number[]} exacts - exact x-values array.
     */
     updateLocalErrors(exacts) {
-        let localErrors = [];
+        let localErrors = [0];
 
         for (let i = 0; i < exacts.length; i++) {
             localErrors.push(Math.abs(this.values[i + 1] - exacts[i + 1]));
