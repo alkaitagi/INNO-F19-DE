@@ -1,6 +1,8 @@
 # DE Computational practicum
 
-## General solution
+## Solving the equation
+
+### General solution
 
 $y'=xy-xy^3$
 
@@ -34,7 +36,7 @@ $y^2=\frac{e^{x^2}}{C_1+e^{x^2}}$
 
 $y=\plusmn\sqrt{\frac{e^{x^2}}{C_1+e^{x^2}}}$
 
-## Initial value problem
+### Initial value problem
 
 $y(0)=\sqrt{\frac{1}{2}}$
 
@@ -50,10 +52,12 @@ and we can obtain general formula for $C$:
 
 $C = e^{x_0^2}(\frac{1}{y_0^2} - 1)$
 
-## Particular solution
+### Particular solution
 
 since $y_0$ is positive, we pick $+$ sign:
 
-$y=\sqrt{\frac{e^{x^2}}{C+e^{x^2}}}$
+$y=\sqrt{\frac{e^{x^2}}{1+e^{x^2}}}$
 
-## Discontuinuity points
+### Discontuinuity points
+
+The function does not have any discontinuity points.
