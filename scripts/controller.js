@@ -27,9 +27,9 @@ export function recalculate(x0, y0, X, N0, N) {
     window.CInput.value = exact.constant;
     inputs = exact.round(inputs);
 
-    drawFunctions(inputs);
-    drawLocalErrors(inputs);
-    drawGlobalErrors(inputs, N0, N);
+    drawFunctions();
+    drawLocalErrors();
+    drawGlobalErrors(N0, N);
 }
 
 function drawFunctions() {
@@ -107,15 +107,19 @@ function drawLocalErrors() {
     });
 }
 
-function drawGlobalErrors() {
+function drawGlobalErrors(N0, N) {
     if (window.charts.globalError !== null) {
         window.charts.globalError.destroy();
     }
 
+    let labels = [];
+    for (let i = N0; i <= N; i++)
+        labels.push(i);
+
     window.charts.globalError = new Chart(window.canvases.globalError, {
         type: 'line',
         data: {
-            labels: inputs,
+            labels: labels,
             datasets: [
                 ...approximations.map(a => a.createDataset(a.globalErrors)),
             ],

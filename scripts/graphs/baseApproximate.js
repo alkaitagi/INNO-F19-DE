@@ -43,8 +43,8 @@ export default class baseApproximate extends base {
     updateLocalErrors(exacts) {
         let localErrors = [0];
 
-        for (let i = 0; i < exacts.length; i++) {
-            localErrors.push(Math.abs(this.values[i + 1] - exacts[i + 1]));
+        for (let i = 1; i <= exacts.length; i++) {
+            localErrors.push(Math.abs(this.values[i] - exacts[i]));
         }
         this.localErrors = this.round(localErrors);
     }
@@ -53,8 +53,8 @@ export default class baseApproximate extends base {
     * @param {number} x0 - initial x-values.
     * @param {number} y0 - initial y-value.
     * @param {function} F - f(x,y) function to approximate.
-    * @param {number} Y - final y-value.
     * @param {number} X - final x-values.
+    * @param {number} Y - final y-value.
     * @param {number} N0 - initial step index.
     * @param {number} N - final step index.
     */
@@ -62,7 +62,8 @@ export default class baseApproximate extends base {
         let globalErrors = [];
 
         for (let i = N0; i <= N; i++) {
-            let values = this._calculateValues(this.calculateInputs(x0, X, i), y0, F);
+            let inputs = this.calculateInputs(x0, X, i);
+            let values = this._calculateValues(inputs, y0, F);
             globalErrors.push(Math.abs(values[values.length - 1] - Y));
         }
 
