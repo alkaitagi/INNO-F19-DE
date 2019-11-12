@@ -2,8 +2,8 @@
 
 **Links:**
 
-- [Hosted web-app](https://alkaitagi.github.io/INNO-F19-DE/)
-- [Repository with source code](https://github.com/alkaitagi/INNO-F19-DE)
+- [GitHub pages hosted web-app](https://alkaitagi.github.io/INNO-F19-DE/)
+- [Repository with source code and this report](https://github.com/alkaitagi/INNO-F19-DE)
 
 **Table of contents:**
 
