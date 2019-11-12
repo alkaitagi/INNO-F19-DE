@@ -1,8 +1,10 @@
 import { recalculate } from "./controller.js"
 
-Chart.defaults.global.animation.duration = 200;
+document.addEventListener("DOMContentLoaded", scaffold);
 
-document.addEventListener("DOMContentLoaded", () => {
+function scaffold() {
+    Chart.defaults.global.animation.duration = 200;
+
     window.canvases = {};
     window.charts = {
         function: null,
@@ -28,4 +30,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     callback();
-});
+}

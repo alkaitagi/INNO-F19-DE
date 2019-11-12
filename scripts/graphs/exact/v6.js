@@ -1,11 +1,11 @@
 import base from "../baseExact.js";
-import equation from "../../math/equations/v5.js"
+import equation from "../../math/equations/v6.js"
 
-class v5 extends base {
+class v6 extends base {
     constructor() {
         super();
         this.equation = equation;
     }
 };
 
-export default new v5();
+export default new v6();

@@ -110,6 +110,10 @@ Same result can be obtained on the dedicated *Local errors* chart:
 
 <img src="./images/localErrors.png" height="250" width="400">
 
+And appearance of *Global errors* chart renders to be correct as they diminish while we increase the steps number:
+
+<img src="./images/globalErrors.png" height="250" width="400">
+
 ## 3. Implementation
 
 The application was developed as a web page with JavaScript implemented logic. All the scripts can be divided into 3 cathergories:
@@ -123,6 +127,8 @@ The application was developed as a web page with JavaScript implemented logic. A
 - graph classes
   - approximate
   - exact
+
+Most importantly, an attempt was made to generalizing framework both *equations* and *approximations* so that adding any new of them would be very easy and their number could scale without affecting the whole framwork at all.
 
 ### 3.1 Managers
 
@@ -156,4 +162,6 @@ In addition to these, each graph type has its distinct features:
 
 ### 3.4 UML diagram
 
-The systems described above can be inspected in the following diagram.
+The systems described above can be inspected in the following UML diagram.
+
+<img src="./images/umlDiagram.png" height="800" width="400">
