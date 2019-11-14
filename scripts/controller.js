@@ -3,11 +3,10 @@ import euler from "./graphs/approximate/euler.js"
 import eulerP from "./graphs/approximate/eulerP.js"
 import runge4 from "./graphs/approximate/runge4.js"
 
-let inputs = [];
 const approximations = [runge4, eulerP, euler];
 
 export function recalculate(x0, y0, X, N0, N) {
-    inputs = exact.calculateInputs(x0, X, N);
+    let inputs = exact.calculateInputs(x0, X, N);
 
     exact.updateValues(inputs, y0);
     approximations.forEach(function (a) {
@@ -27,38 +26,34 @@ export function recalculate(x0, y0, X, N0, N) {
     window.CInput.value = exact.constant;
     inputs = exact.round(inputs);
 
-    drawFunctions();
-    drawLocalErrors();
-    drawGlobalErrors(N0, N);
-}
-
-function drawFunctions() {
-    window.charts.function.data = {
-        labels: inputs,
-        datasets: [
+    updateChart(
+        window.charts.function,
+        inputs,
+        [
             ...approximations.map(a => a.createDataset(a.values)),
             exact.createDataset(exact.values),
         ],
-    };
-    window.charts.function.update();
-}
-
-function drawLocalErrors() {
-    window.charts.localError.data = {
-        labels: inputs,
-        datasets: [
+    );
+    updateChart(
+        window.charts.localError,
+        inputs,
+        [
             ...approximations.map(a => a.createDataset(a.localErrors)),
         ],
-    };
-    window.charts.localError.update();
-}
-
-function drawGlobalErrors(N0, N) {
-    window.charts.globalError.data = {
-        labels: Array.from({ length: N - N0 + 1 }, (x, i) => i + N0),
-        datasets: [
+    );
+    updateChart(
+        window.charts.globalError,
+        Array.from({ length: N - N0 + 1 }, (x, i) => i + N0),
+        [
             ...approximations.map(a => a.createDataset(a.globalErrors)),
         ],
-    };
-    window.charts.globalError.update();
+    );
+}
+
+function updateChart(chart, labels, datasets) {
+    chart.data = {
+        labels: labels,
+        datasets: datasets,
+    }
+    chart.update();
 }
