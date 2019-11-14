@@ -18,8 +18,8 @@ export default class baseApproximate extends base {
     * @private
     */
     _calculateValues(inputs, y0, F) {
-        let values = [y0];
-        let h = inputs[1] - inputs[0];
+        const values = [y0];
+        const h = inputs[1] - inputs[0];
 
         for (let i = 0; i < inputs.length - 1; i++) {
             values.push(this.approximation.method(inputs[i], values[i], h, F));
@@ -41,12 +41,11 @@ export default class baseApproximate extends base {
     * @param {number[]} exacts - exact x-values array.
     */
     updateLocalErrors(exacts) {
-        let localErrors = [0];
-
+        this.localErrors = [0];
         for (let i = 1; i <= exacts.length; i++) {
-            localErrors.push(Math.abs(this.values[i] - exacts[i]));
+            this.localErrors.push(Math.abs(this.values[i] - exacts[i]));
         }
-        this.localErrors = this.round(localErrors);
+        this.localErrors = this.round(this.localErrors);
     }
     /**
     * Calculate dataset for array of x.
@@ -59,14 +58,13 @@ export default class baseApproximate extends base {
     * @param {number} N - final step index.
     */
     updateGlobalErrors(x0, y0, F, X, Y, N0, N) {
-        let globalErrors = [];
-
+        this.globalErrors = [];
         for (let i = N0; i <= N; i++) {
-            let inputs = this.calculateInputs(x0, X, i);
-            let values = this._calculateValues(inputs, y0, F);
-            globalErrors.push(Math.abs(values[values.length - 1] - Y));
+            this.globalErrors.push(Math.abs(
+                this._calculateValues(this.calculateInputs(x0, X, i), y0, F)
+                    .slice(-1)[0] - Y
+            ));
         }
-
-        this.globalErrors = this.round(globalErrors);
+        this.globalErrors = this.round(this.globalErrors);
     }
 };

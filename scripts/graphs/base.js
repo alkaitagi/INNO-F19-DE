@@ -21,7 +21,7 @@ export default class base {
     * @param {number[]} inputs - array of values to insert.
     */
     createDataset(inputs) {
-        let copy = Object.assign({}, this.styling);
+        const copy = Object.assign({}, this.styling);
         copy.data = inputs;
         return copy;
     }
@@ -32,8 +32,8 @@ export default class base {
     * @param {number} N - number of steps.
     */
     calculateInputs(x0, X, N) {
-        let inputs = [];
-        let h = (X - x0) / N;
+        const inputs = [];
+        const h = (X - x0) / N;
 
         for (let i = 0; i <= N; i++) {
             inputs.push(x0 + i * h);

@@ -20,14 +20,11 @@ export default class baseExact extends base {
     * @param {number} y0 - initial y-value.
     */
     updateValues(inputs, y0) {
-        let values = [];
-        let constant = this.equation.constant(inputs[0], y0);
-
+        this.values = [];
         for (let i = 0; i < inputs.length; i++) {
-            values.push(this.equation.function(inputs[i], inputs[0], y0));
+            this.values.push(this.equation.function(inputs[i], inputs[0], y0));
         }
-
-        this.values = this.round(values);
-        this.constant = this.round([constant])[0];
+        this.values = this.round(this.values);
+        this.constant = this.round([this.equation.constant(inputs[0], y0)])[0];
     };
 };
