@@ -115,7 +115,7 @@ The application was developed as a web page with JavaScript implemented logic. A
 
 - managers
   - conroller
-  - dataBind
+  - initializer
 - math classes
   - appromixations
   - equations
@@ -127,7 +127,7 @@ Most importantly, an attempt was made to generalizing framework both *equations*
 
 ### 3.1 Managers
 
-**DataBind.js** module provides scaffolding functoinality by assigning callbacks to UI input fields changes that will trigger mathematical recomputations. It also provides interfaces for accessing html elements needed to be referenced for output during computation and plotting.
+**Initializer.js** module provides setup functoinality by assigning callbacks to UI input fields changes that will trigger mathematical recomputations. It also provides interfaces for accessing html elements needed to be referenced for output during computation and plotting and assigns common chart options.
 
 **Controller.js** module accepts 5 inputs and then passes them into exported exact solution and approxmaions. After all the computations are finished it draws graphs using resulting arrays of values.
 
