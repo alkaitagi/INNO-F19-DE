@@ -123,13 +123,13 @@ The application was developed as a web page with JavaScript implemented logic. A
   - approximate
   - exact
 
-Most importantly, an attempt was made to generalizing framework both *equations* and *approximations* so that adding any new of them would be very easy and their number could scale without affecting the whole framwork at all.
+Most importantly, an attempt was made to generalizing framework both *equations* and *approximations* so that adding any new variant of them would be easy and their number could scale without arising the need for modifying the framework itself.
 
 ### 3.1 Managers
 
-**Initializer.js** module provides setup functoinality by assigning callbacks to UI input fields changes that will trigger mathematical recomputations. It also provides interfaces for accessing html elements needed to be referenced for output during computation and plotting and assigns common chart options.
+**Initializer.js** module provides setup functoinality by assigning callbacks to UI input fields changes that will trigger mathematical computations. It also references objects needed for drawing and assigns common chart options.
 
-**Controller.js** module accepts 5 inputs and then passes them into exported exact solution and approxmaions. After all the computations are finished it draws graphs using resulting arrays of values.
+**Controller.js** module accepts 5 input numbers (x0, y0, X, N0, N) and then passes them into exported exact solution and approxmaions. After all the computations are finished it draws graphs using resulting arrays of values. Also displays the constant value found by the initial condions.
 
 ### 3.2 Math classes
 
@@ -137,7 +137,7 @@ All of math classes divide into 2 cathegories.
 
 **Approximations** provide singe method that accepts a point [x, y], grid step [h] and derivative function [y'(x,y)] and then utilizing its defined algorithm return approximated numerical value.
 
-**Equations** can implement any particular variant from the practicum by providing 3 discting functions: *derivative(x,y)*, *constant(x0,y0)*, *function(x, x0 ,y0)*. These functions later utilized in *exact* graphs as well as *derivate* being passed into *approxmate* graphs.
+**Equations** can implement any particular variant from the practicum by providing 3 discting functions: *derivative(x,y)*, *constant(x0,y0)*, *function(x, x0 ,y0)*. These functions later utilized in *exact* graphs. The *derivate* function also passed into *approxmate* graphs.
 
 ### 3.3 Graph classes
 
@@ -151,9 +151,9 @@ Each graph contains *styling* object, *values* numerical array, and utility 3 fu
 
 In addition to these, each graph type has its distinct features:
 
-**Approximate** wraps around *approximation* math class. As such, it can store on instance of particular *approximation* that later will be used for updating its approximation *values*, *localErrors* and *globalErrors* in its corresponding methods.
+**Approximate** graph wraps around *approximation* math class. As such, it can store on instance of particular *approximation* that later will be used for updating its approximation *values*, *localErrors* and *globalErrors* in its corresponding methods.
 
-**Exact** graph wraps around *exact* math class. Therefore it contains variable for storing such class instance. This instance's methods are later used for computing particular solution through finding constant by initial conditions, as well as the whole set of exact values of the functoin on a given set.
+**Exact** graph wraps around *exact* math class. Therefore it contains variable for storing such class instance. This instance's methods are later used for computing particular solution through finding constant by initial conditions, as well as the whole set of exact values of the functoin on the given set.
 
 ### 3.4 UML diagram
 
