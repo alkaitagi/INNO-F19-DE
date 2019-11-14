@@ -165,10 +165,10 @@ In addition to these, each graph type has its distinct features:
 
 **Approximate** graph wraps around *approximation* math class. As such, it can store on instance of particular *approximation* that later will be used for updating its approximation *values*, *localErrors* and *globalErrors* in its corresponding methods.
 
-**Exact** graph wraps around *exact* math class. Therefore it contains variable for storing such class instance. This instance's methods are later used for computing particular solution through finding constant by initial conditions, as well as the whole set of exact values of the functoin on the given set.
+**Exact** graph wraps around *exact* math class. Therefore it contains variable for storing such class instance. This instance's methods are later used for computing particular solution through finding constant by initial conditions, as well as the whole set of exact values of the function on the given set.
 
 ### 3.4 UML diagram
 
-The systems described above can be inspected in the following UML diagram.
+The systems described above can be inspected in the following UML diagram of high-level class overview (private members are hidden).
 
 <img src="./images/umlDiagram.png" height="900" width="450">
