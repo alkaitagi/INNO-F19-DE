@@ -11,7 +11,7 @@ class v11 extends base {
         return Math.exp(x0 ** 2) * (1 / (y0 ** 2) - 1);
     };
     function(x, x0, y0) {
-        let e = Math.exp(x ** 2);
+        const e = Math.exp(x ** 2);
         return Math.sign(y0) * Math.sqrt(e / (this.constant(x0, y0) + e));
     };
 };
